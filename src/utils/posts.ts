@@ -41,7 +41,7 @@ export function parsePostProperties(
 
 export async function getPosts() {
   const data = await notion.databases.query({
-    database_id: import.meta.env.VITE_NOTION_DATABASE_ID,
+    database_id: process.env.VITE_NOTION_DATABASE_ID as string,
     filter: {
       // only published posts
       property: 'Published',

@@ -8,9 +8,7 @@ type subscriberCount = string;
 export const routeData = () => {
   return createServerData$(async () => {
     const response = await fetch(
-      `https://emailoctopus.com/api/1.6/lists/${
-        import.meta.env.VITE_EMAIL_OCTOPUS_LIST_ID
-      }?api_key=${import.meta.env.VITE_EMAIL_OCTOPUS_API_KEY}`
+      `https://emailoctopus.com/api/1.6/lists/${process.env.VITE_EMAIL_OCTOPUS_LIST_ID}?api_key=${process.env.VITE_EMAIL_OCTOPUS_API_KEY}`
     );
     const data = await response.json();
     return data.counts.subscribed as subscriberCount;

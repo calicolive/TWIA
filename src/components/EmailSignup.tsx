@@ -15,13 +15,11 @@ const EmailSignup: Component<{}> = (props) => {
         throw new FormError(error);
       }
       const data = {
-        api_key: import.meta.env.VITE_EMAIL_OCTOPUS_API_KEY,
+        api_key: process.env.EMAIL_OCTOPUS_API_KEY,
         email_address: validatedEmail.data,
       };
       const response = await fetch(
-        `https://emailoctopus.com/api/1.6/lists/${
-          import.meta.env.VITE_EMAIL_OCTOPUS_LIST_ID
-        }/contacts`,
+        `https://emailoctopus.com/api/1.6/lists/${process.env.EMAIL_OCTOPUS_LIST_ID}/contacts`,
         {
           method: 'POST',
           headers: {
