@@ -23,7 +23,18 @@ export default function Root() {
       </Head>
       <Body>
         <Suspense>
-          <ErrorBoundary>
+          <ErrorBoundary
+            fallback={(e: Error) => (
+              <>
+                <h2>Oh no! An Error!</h2>
+                <details>
+                  <summary>Click here to learn more</summary>
+                  <p>
+                    <strong>{e.name}</strong>: {e.message}
+                  </p>
+                </details>
+              </>
+            )}>
             <Routes>
               <FileRoutes />
             </Routes>

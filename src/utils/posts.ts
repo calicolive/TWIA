@@ -10,6 +10,7 @@ import {
 } from '@notionhq/client/build/src/api-endpoints';
 
 import { notion } from './client';
+import server from '~/env/server';
 
 export type PostProperties = {
   Slug: RichTextPropertyItemObjectResponse;
@@ -41,7 +42,7 @@ export function parsePostProperties(
 
 export async function getPosts() {
   const data = await notion.databases.query({
-    database_id: process.env.VITE_NOTION_DATABASE_ID as string,
+    database_id: server.NOTION_DATABASE_ID,
     filter: {
       // only published posts
       property: 'Published',
