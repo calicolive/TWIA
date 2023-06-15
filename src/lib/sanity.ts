@@ -9,4 +9,4 @@ const config: ClientConfig = {
 
 const client = createClient(config);
 
-export { client };
+export default client;
