@@ -1,74 +1,22 @@
-import {
-  BlockObjectResponse,
-  CheckboxPropertyItemObjectResponse,
-  DatePropertyItemObjectResponse,
-  MultiSelectPropertyItemObjectResponse,
-  PageObjectResponse,
-  PartialBlockObjectResponse,
-  RichTextPropertyItemObjectResponse,
-  TitlePropertyItemObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints';
+import { client } from '~/utils/client';
 
-import { notion } from './client';
-import server from '~/env/server';
-
-export type PostProperties = {
-  Slug: RichTextPropertyItemObjectResponse;
-  Date: DatePropertyItemObjectResponse;
-  Published: CheckboxPropertyItemObjectResponse;
-  Page: TitlePropertyItemObjectResponse;
-};
-
-export function parsePostProperties(
-  properties: PostProperties,
-  page: (BlockObjectResponse | PartialBlockObjectResponse)[]
-) {
-  // the description is the text before a horizontal separator
-  const description = page
-    .slice(
-      0,
-      page.findIndex((block: any) => block.type === 'divider')
-    )
-    .map((block: any) => block.paragraph?.rich_text?.[0]?.plain_text)
-    .join(' ');
-
-  // return all the parsed properties
-  return {
-    title: (properties.Page.title as any)[0].plain_text as string,
-    slug: (properties.Slug.rich_text as any)[0].plain_text,
-    date: properties.Date.date!.start,
+interface Post {
+  _createdAt: string;
+  title: string;
+  slug: {
+    current: string;
   };
 }
 
-export async function getPosts() {
-  const data = await notion.databases.query({
-    database_id: server.NOTION_DATABASE_ID,
-    filter: {
-      // only published posts
-      property: 'Published',
-      checkbox: {
-        equals: true,
-      },
-    },
-  });
+export const getPosts = async (): Promise<Post[]> => {
+  const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
+  const posts = await client.fetch<Post[]>(query);
 
-  // format results
-  return await Promise.all(
-    data.results.map(async (post) => {
-      // Get the properties
-      const properties = (post as any).properties as PostProperties;
+  return posts;
+};
 
-      // Fetch the post contents
-      const page = await notion.blocks.children.list({
-        block_id: post.id,
-      });
-
-      // Return the formatted post
-      return {
-        id: post.id,
-        modified: (post as PageObjectResponse).last_edited_time,
-        ...parsePostProperties(properties, page.results),
-      };
-    })
-  );
-}
+export const getPost = (id: string) => {
+  const query = `*[_type == "post" && slug.current == $id][0]`;
+  const post = client.fetch(query, { id });
+  return post;
+};

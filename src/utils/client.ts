@@ -1,6 +1,12 @@
-import { Client } from '@notionhq/client';
-import server from '~/env/server';
+import { createClient } from '@sanity/client';
 
-export const notion = new Client({
-  auth: server.NOTION_API_KEY,
+export const projectId = 'xjcdjcm9';
+export const dataset = 'production';
+export const apiVersion = '2023-01-01';
+
+export const client = createClient({
+  projectId,
+  dataset,
+  useCdn: true,
+  apiVersion,
 });

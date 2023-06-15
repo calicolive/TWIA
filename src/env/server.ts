@@ -8,8 +8,6 @@ if (typeof window !== 'undefined') {
 config();
 
 export const serverSchema = z.object({
-  NOTION_API_KEY: z.string(),
-  NOTION_DATABASE_ID: z.string(),
   PUBLIC_URL: z.optional(z.string()),
   EMAIL_OCTOPUS_LIST_ID: z.string(),
   EMAIL_OCTOPUS_API_KEY: z.string(),

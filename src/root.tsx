@@ -25,7 +25,7 @@ export default function Root() {
         <Suspense>
           <ErrorBoundary
             fallback={(e: Error) => (
-              <>
+              <div class='flex items-center justify-center'>
                 <h2>Oh no! An Error!</h2>
                 <details>
                   <summary>Click here to learn more</summary>
@@ -33,7 +33,7 @@ export default function Root() {
                     <strong>{e.name}</strong>: {e.message}
                   </p>
                 </details>
-              </>
+              </div>
             )}>
             <Routes>
               <FileRoutes />

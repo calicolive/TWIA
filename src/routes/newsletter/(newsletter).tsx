@@ -12,25 +12,41 @@ export function routeData() {
 
 const Newsletter: Component<{}> = (props) => {
   const posts = useRouteData<typeof routeData>();
+
   return (
     <main class='  min-h-screen  justify-center bg-zinc-950 bg-grain '>
       <h1 class='bg-zinc-50 bg-grain-dark bg-clip-text pt-14 text-center text-4xl font-extrabold tracking-tighter text-transparent '>
         Latest Issues
       </h1>
-      <div class='container mx-auto mt-12 flex flex-col items-center justify-center space-y-4'>
-        <For each={posts()}>
-          {(post) => (
-            <Show when={post} fallback={'loading...'}>
-              <A
-                href={`/newsletter/${post.slug}`}
-                class='group text-indigo-500 transition duration-100'>
-                {post.title}
-                <span class='block h-0.5 max-w-0 bg-indigo-500 transition-all duration-500 group-hover:max-w-full'></span>
-              </A>
-            </Show>
-          )}
-        </For>
-      </div>
+      <section class=' container mx-auto flex flex-col items-center justify-center space-y-4'>
+        <ul>
+          <For each={posts()}>
+            {(post) => {
+              const createdAt = new Date(post._createdAt);
+              const formattedDate = createdAt.toLocaleDateString('en-US', {
+                month: 'numeric',
+                day: 'numeric',
+                year: 'numeric',
+              });
+              return (
+                <article class='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl '>
+                  {/* <div class='flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-zinc-50'>
+                    <time dateTime={post._createdAt} class='mr-8'>
+                      {formattedDate}
+                    </time>
+                  </div> */}
+                  <h2 class='text-md mt-3 text-center font-semibold leading-6 text-zinc-50 sm:text-lg '>
+                    <A href={`${post.slug.current}`}>
+                      <span class='absolute inset-0' />
+                      {post.title}
+                    </A>
+                  </h2>
+                </article>
+              );
+            }}
+          </For>
+        </ul>
+      </section>
     </main>
   );
 };
