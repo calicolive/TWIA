@@ -1,10 +1,10 @@
 import { Component, For, Show } from 'solid-js';
-import { A, useRouteData } from 'solid-start';
+import { A, createRouteData, useRouteData } from 'solid-start';
 import { createServerData$ } from 'solid-start/server';
 import { getPosts } from '~/utils/posts';
 
 export function routeData() {
-  return createServerData$(async () => await getPosts(), {
+  return createRouteData(async () => await getPosts(), {
     key: 'posts',
     ssrLoadFrom: 'server',
   });

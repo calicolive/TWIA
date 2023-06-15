@@ -1,4 +1,5 @@
 import { createClient, type ClientConfig } from '@sanity/client';
+import server$ from 'solid-start/server';
 
 const config: ClientConfig = {
   projectId: 'xjcdjcm9',
