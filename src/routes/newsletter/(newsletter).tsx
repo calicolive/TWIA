@@ -1,7 +1,7 @@
 import { Component, For, Show } from 'solid-js';
 import { A, createRouteData, useRouteData } from 'solid-start';
 import { createServerData$ } from 'solid-start/server';
-import { getPosts } from '~/utils/posts';
+import { getPosts } from '~/lib/sanity';
 
 export function routeData() {
   return createRouteData(async () => await getPosts(), {
@@ -30,11 +30,6 @@ const Newsletter: Component<{}> = (props) => {
               });
               return (
                 <article class='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl '>
-                  {/* <div class='flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-zinc-50'>
-                    <time dateTime={post._createdAt} class='mr-8'>
-                      {formattedDate}
-                    </time>
-                  </div> */}
                   <h2 class='text-md mt-3 text-center font-semibold leading-6 text-zinc-50 hover:text-indigo-500 sm:text-lg '>
                     <A href={`${post.slug.current}`}>
                       <span class='absolute inset-0' />
