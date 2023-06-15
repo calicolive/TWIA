@@ -17,12 +17,12 @@ const Issue: Component<{}> = (props) => {
   return (
     <main class='  min-h-screen  justify-center bg-zinc-950 bg-grain '>
       <Show when={post()}>
-        <article class='md:prose-md container prose prose-sm prose-zinc mx-auto p-4 text-zinc-50 lg:prose-lg  prose-h2:text-zinc-300 prose-a:text-indigo-500 prose-a:no-underline hover:prose-a:text-indigo-400'>
-          <h1 class='text-4xl font-bold text-zinc-50 '>
+        <section class='md:prose-md container prose prose-sm prose-zinc mx-auto p-4 text-zinc-50 lg:prose-lg  prose-h2:text-zinc-300 prose-a:text-indigo-500 prose-a:no-underline hover:prose-a:text-indigo-400'>
+          <h1 class='text-2xl font-bold text-zinc-50 '>
             {post().title ? post().title : null}
           </h1>
           <PortableText value={post().body ? post().body : null} />
-        </article>
+        </section>
       </Show>
     </main>
   );

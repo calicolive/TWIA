@@ -18,7 +18,7 @@ const Newsletter: Component<{}> = (props) => {
       <h1 class='bg-zinc-50 bg-grain-dark bg-clip-text pt-14 text-center text-4xl font-extrabold tracking-tighter text-transparent '>
         Latest Issues
       </h1>
-      <section class=' container mx-auto flex flex-col items-center justify-center space-y-4'>
+      <section class=' container mx-auto mt-12 flex flex-col items-center justify-center space-y-4'>
         <ul>
           <For each={posts()}>
             {(post) => {
@@ -35,7 +35,7 @@ const Newsletter: Component<{}> = (props) => {
                       {formattedDate}
                     </time>
                   </div> */}
-                  <h2 class='text-md mt-3 text-center font-semibold leading-6 text-zinc-50 sm:text-lg '>
+                  <h2 class='text-md mt-3 text-center font-semibold leading-6 text-zinc-50 hover:text-indigo-500 sm:text-lg '>
                     <A href={`${post.slug.current}`}>
                       <span class='absolute inset-0' />
                       {post.title}
