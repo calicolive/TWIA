@@ -1,8 +1,10 @@
-import { createClient } from '@sanity/client';
+import { createClient, type ClientConfig } from '@sanity/client';
 
-export const client = createClient({
+const config: ClientConfig = {
   projectId: 'xjcdjcm9',
   dataset: 'production',
   useCdn: true,
-  apiVersion: '2023-05-03',
-});
+  apiVersion: '2023-06-15', // use current date (YYYY-MM-DD) to target the latest API version
+};
+
+export const client = createClient(config);
