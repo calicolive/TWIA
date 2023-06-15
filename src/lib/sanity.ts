@@ -7,4 +7,6 @@ const config: ClientConfig = {
   apiVersion: '2023-06-15', // use current date (YYYY-MM-DD) to target the latest API version
 };
 
-export const client = createClient(config);
+const client = createClient(config);
+
+export default client;
