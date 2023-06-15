@@ -1,7 +1,6 @@
 import { Component, Show } from 'solid-js';
 import { PortableText } from 'solid-portabletext';
 import { createRouteData, useParams, useRouteData } from 'solid-start';
-import { createServerData$ } from 'solid-start/server';
 import { getPost } from '~/lib/sanity';
 
 export function routeData() {

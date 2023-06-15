@@ -1,6 +1,6 @@
-import { Component, For, Show } from 'solid-js';
+import { Component, For } from 'solid-js';
 import { A, createRouteData, useRouteData } from 'solid-start';
-import { createServerData$ } from 'solid-start/server';
+
 import { getPosts } from '~/lib/sanity';
 
 export function routeData() {
