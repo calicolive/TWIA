@@ -41,7 +41,6 @@ export default function Home() {
                 <span class=' text-indigo-500 underline-offset-2 hover:underline'>
                   one weekly email
                 </span>
-                .
               </p>
             </div>
           </div>
