@@ -27,7 +27,7 @@ export default function Confirmation() {
           </p>
 
           <A
-            href='/'
+            href='/newsletter'
             class='mt-6 flex flex-col justify-center text-center text-sm text-indigo-500 underline'>
             <div class='flex-1'></div>
             <p> Catch up on last weeks newsletter issue here </p>

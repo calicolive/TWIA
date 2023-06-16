@@ -1,6 +1,5 @@
 import { Component, For } from 'solid-js';
 import { A, createRouteData, useRouteData } from 'solid-start';
-import { createServerData$ } from 'solid-start/server';
 import { getPosts } from '~/lib/sanity';
 
 
@@ -27,13 +26,11 @@ const Newsletter: Component<{}> = (props) => {
                 year: 'numeric',
               });
               return (
-                <article class='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl '>
-                  <h2 class='text-md mt-3 text-center font-semibold leading-6 text-zinc-50 hover:text-indigo-500 sm:text-lg '>
-                    <A href={`${post.slug.current}`}>
-                      <span class='absolute inset-0' />
+                <article class='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl p-4 '>
+                    <A  class='text-md mt-3 text-center group font-semibold leading-6 text-zinc-50  hover:text-indigo-500 sm:text-lg' href={`${post.slug.current}`}>
                       {post.title}
+                      <span class='block h-0.5 max-w-0 bg-indigo-500 transition-all duration-500 group-hover:max-w-full'></span>
                     </A>
-                  </h2>
                 </article>
               );
             }}
