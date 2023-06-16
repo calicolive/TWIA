@@ -24,6 +24,7 @@
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.8.2",
     "dotenv": "^16.1.4",
+    "picosanity": "^4.0.0",
     "solid-confetti-explosion": "^1.1.6",
     "solid-js": "^1.7.2",
     "solid-portabletext": "^0.0.1",

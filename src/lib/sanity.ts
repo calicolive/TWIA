@@ -1,14 +1,12 @@
 import server$  from 'solid-start/server';
-import {createClient, ClientConfig} from '@sanity/client'
+import PicoSanity from 'picosanity'
 
-export const config: ClientConfig = {
+const client = new PicoSanity({
     projectId: 'xjcdjcm9',
     dataset: 'production',
     apiVersion: '2023-06-16',
     useCdn: true,
-  };
-
-  export const client = (createClient(config));
+  })
 
   export const getPost =server$(async (id: string) => {
   const query = `*[_type == "post" && slug.current == $id][0]`;
