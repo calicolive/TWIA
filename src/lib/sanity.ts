@@ -8,6 +8,7 @@ interface Post {
   };
 }
 
+
 export const config: ClientConfig = {
   projectId: 'xjcdjcm9',
   dataset: 'production',
@@ -17,15 +18,15 @@ export const config: ClientConfig = {
 
 export const client = createClient(config);
 
-export const getPosts = async (): Promise<Post[]> => {
-  const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
-  const posts = await client.fetch<Post[]>(query);
+// export const getPosts = async (): Promise<Post[]> => {
+//   const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
+//   const posts = await client.fetch<Post[]>(query);
 
-  return posts;
-};
+//   return posts;
+// };
 
-export const getPost = (id: string) => {
-  const query = `*[_type == "post" && slug.current == $id][0]`;
-  const post = client.fetch(query, { id });
-  return post;
-};
+// export const getPost = (id: string) => {
+//   const query = `*[_type == "post" && slug.current == $id][0]`;
+//   const post = client.fetch(query, { id });
+//   return post;
+// };
