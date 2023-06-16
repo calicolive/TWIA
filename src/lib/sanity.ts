@@ -1,4 +1,5 @@
 import { createClient, type ClientConfig } from '@sanity/client';
+import server from '~/env/server';
 
 interface Post {
   _createdAt: string;
@@ -12,6 +13,7 @@ const config: ClientConfig = {
   projectId: 'xjcdjcm9',
   dataset: 'production',
   apiVersion: '2023-06-15',
+  useCdn: true,
 };
 
 const client = createClient(config);
