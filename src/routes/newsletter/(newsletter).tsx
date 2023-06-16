@@ -4,7 +4,7 @@ import { createServerData$ } from 'solid-start/server';
 import { getPosts } from '~/utils/posts';
 
 export function routeData() {
-  return createRouteData(getPosts);
+  return createServerData$(getPosts);
 }
 
 const Newsletter: Component<{}> = (props) => {
