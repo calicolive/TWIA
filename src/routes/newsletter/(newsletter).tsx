@@ -29,7 +29,6 @@ const Newsletter: Component<{}> = (props) => {
                 <article class='relative isolate flex flex-col justify-end overflow-hidden rounded-2xl p-4 '>
                     <A  class='text-md mt-3 text-center group font-semibold leading-6 text-zinc-50  hover:text-indigo-500 sm:text-lg' href={`${post.slug.current}`}>
                       {post.title}
-                      <span class='block h-0.5 max-w-0 bg-indigo-500 transition-all duration-500 group-hover:max-w-full'></span>
                     </A>
                 </article>
               );

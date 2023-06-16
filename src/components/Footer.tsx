@@ -3,7 +3,7 @@ import { A } from 'solid-start';
 
 const links = [
   { name: 'Privacy', href: '/privacy' },
-  { name: 'Advertise', href: '/advertise' },
+  // { name: 'Advertise', href: '/advertise' },
   { name: 'Newsletter', href: '/newsletter' },
 ];
 

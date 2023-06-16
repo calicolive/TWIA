@@ -1,10 +1,10 @@
-import { A, useRouteData } from 'solid-start';
+
+import { A, createRouteData, useRouteData } from 'solid-start';
 import { createServerData$ } from 'solid-start/server';
 import EmailSignup from '~/components/EmailSignup';
 import Footer from '~/components/Footer';
 import server from '~/env/server';
-
-type subscriberCount = string;
+import { getLatestPostSlug } from '~/lib/sanity';
 
 export const routeData = () => {
   return createServerData$(async () => {
@@ -12,12 +12,17 @@ export const routeData = () => {
       `https://emailoctopus.com/api/1.6/lists/${server.EMAIL_OCTOPUS_LIST_ID}?api_key=${server.EMAIL_OCTOPUS_API_KEY}`
     );
     const data = await response.json();
-    return data.counts.subscribed as subscriberCount;
+
+    const slug = await getLatestPostSlug();
+
+    return {
+      subscriberCount: data.counts.subscribed as number, 
+      slug: slug
+    };
   });
 };
-
 export default function Home() {
-  const subscriberCount = useRouteData<subscriberCount>();
+  const data = useRouteData<typeof routeData>();
   return (
     <main class='flex min-h-screen items-center justify-center bg-zinc-950 bg-grain'>
       <div class='flex flex-col '>
@@ -37,10 +42,10 @@ export default function Home() {
               </p>
               <EmailSignup />
               <p class='mt-6 text-center text-sm text-zinc-300'>
-                Join {subscriberCount} readers for {''}
-                <span class=' text-indigo-500 underline-offset-2 hover:underline'>
+                Join {data()?.subscriberCount} readers for {''}
+                <A  href={`/newsletter/${data()?.slug}`} class=' text-indigo-500 underline-offset-2 hover:underline'>
                   one weekly email
-                </span>
+                </A>
               </p>
             </div>
           </div>

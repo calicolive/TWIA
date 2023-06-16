@@ -1,7 +1,16 @@
+
+
 import { ConfettiExplosion } from 'solid-confetti-explosion';
-import { A } from 'solid-start';
+import { A, createRouteData, useRouteData } from 'solid-start';
+import { getLatestPostSlug } from '~/lib/sanity';
+
+export function routeData() {
+  return createRouteData(getLatestPostSlug);
+}
 
 export default function Confirmation() {
+const slug = useRouteData<typeof routeData>();
+console.log(slug())
   return (
     <main class='bg-bg-gradient flex min-h-screen items-center justify-center bg-zinc-950 bg-grain'>
       <div class='relative overflow-hidden rounded-xl p-[3px] backdrop-blur-xl '>
@@ -27,7 +36,7 @@ export default function Confirmation() {
           </p>
 
           <A
-            href='/newsletter'
+            href={`/newsletter/${slug()}`}
             class='mt-6 flex flex-col justify-center text-center text-sm text-indigo-500 underline'>
             <div class='flex-1'></div>
             <p> Catch up on last weeks newsletter issue here </p>
