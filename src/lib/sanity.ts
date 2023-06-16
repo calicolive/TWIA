@@ -1,5 +1,4 @@
 import { createClient, type ClientConfig } from '@sanity/client';
-import server from '~/env/server';
 
 interface Post {
   _createdAt: string;
