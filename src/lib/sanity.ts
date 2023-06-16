@@ -1,4 +1,5 @@
-import { createClient, ClientConfig } from '@sanity/client';
+import { createClient, type ClientConfig } from '@sanity/client';
+import server from '~/env/server';
 
 interface Post {
   _createdAt: string;
@@ -15,18 +16,7 @@ const config: ClientConfig = {
   useCdn: true,
 };
 
-let client;
-
-if (typeof window === 'undefined') {
-  // Server-side
-  client = createClient(config);
-} else {
-  // Client-side (use CDN)
-  client = createClient({
-    ...config,
-    useCdn: true,
-  });
-}
+const client = createClient(config);
 
 export const getPosts = async (): Promise<Post[]> => {
   const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
