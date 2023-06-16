@@ -4,11 +4,11 @@ import { createServerData$ } from 'solid-start/server';
 import { getPosts } from '~/utils/posts';
 
 export function routeData() {
-  return createServerData$(getPosts);
+  // return createRouteData(getPosts);
 }
 
 const Newsletter: Component<{}> = (props) => {
-  const posts = useRouteData<typeof routeData>();
+  // const posts = useRouteData<typeof routeData>();
 
   return (
     <main class='  min-h-screen  justify-center bg-zinc-950 bg-grain '>
@@ -17,7 +17,7 @@ const Newsletter: Component<{}> = (props) => {
       </h1>
       <section class=' container mx-auto mt-12 flex flex-col items-center justify-center space-y-4'>
         <ul>
-          <For each={posts()}>
+          {/* <For each={posts()}>
             {(post) => {
               const createdAt = new Date(post._createdAt);
               const formattedDate = createdAt.toLocaleDateString('en-US', {
@@ -36,7 +36,7 @@ const Newsletter: Component<{}> = (props) => {
                 </article>
               );
             }}
-          </For>
+          </For> */}
         </ul>
       </section>
     </main>
