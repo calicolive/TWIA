@@ -6,7 +6,6 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       solid({
-        ssr: false,
         adapter: vercel({}),
       }),
     ],
