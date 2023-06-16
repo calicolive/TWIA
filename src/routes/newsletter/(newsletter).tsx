@@ -1,7 +1,7 @@
 import { Component, For } from 'solid-js';
 import { A, createRouteData, useRouteData } from 'solid-start';
 import { createServerData$ } from 'solid-start/server';
-import { getPosts } from '~/utils/posts';
+// import { getPosts } from '~/utils/posts';
 
 export function routeData() {
   // return createRouteData(getPosts);
