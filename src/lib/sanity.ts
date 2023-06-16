@@ -1,19 +1,33 @@
-import { createClient, type ClientConfig } from '@sanity/client';
-
-
+import {createClient, ClientConfig} from '@sanity/client'
 
 export const config: ClientConfig = {
-  projectId: 'xjcdjcm9',
-  dataset: 'production',
-  apiVersion: '2023-06-16',
-  useCdn: true,
+    projectId: 'xjcdjcm9',
+    dataset: 'production',
+    apiVersion: '2023-06-16',
+    useCdn: true,
+  };
+
+  export const client = createClient(config);
+
+  export const getPost = (id: string) => {
+  const query = `*[_type == "post" && slug.current == $id][0]`;
+  const post = client.fetch(query, { id });
+  return post;
 };
 
-export const client = createClient(config);
 
+interface Post {
+    _createdAt: string;
+    title: string;
+    slug: {
+      current: string;
+    };
+  }
 
-// export const getPost = (id: string) => {
-//   const query = `*[_type == "post" && slug.current == $id][0]`;
-//   const post = client.fetch(query, { id });
-//   return post;
-// };
+export const getPosts = async (): Promise<Post[]> => {
+    const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
+    const posts = await client.fetch<Post[]>(query);
+  
+    return posts;
+  };
+  
