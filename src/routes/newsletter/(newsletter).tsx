@@ -4,9 +4,7 @@ import { createServerData$ } from 'solid-start/server';
 import { getPosts } from '~/utils/posts';
 
 export function routeData() {
-  return createRouteData(async () => await getPosts(), {
-    key: 'posts',
-  });
+  return createRouteData(getPosts);
 }
 
 const Newsletter: Component<{}> = (props) => {
