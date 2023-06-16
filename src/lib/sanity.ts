@@ -1,4 +1,5 @@
 import { createClient, type ClientConfig } from '@sanity/client';
+import server$ from 'solid-start/server';
 
 interface Post {
   _createdAt: string;
@@ -15,7 +16,10 @@ const config: ClientConfig = {
   useCdn: true,
 };
 
-const client = createClient(config);
+const clientSetup = server$(async () => {
+  const client = createClient(config);
+  return client;
+});
 
 export const getPosts = async (): Promise<Post[]> => {
   const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
