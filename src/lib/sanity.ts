@@ -1,5 +1,4 @@
 import { createClient, type ClientConfig } from '@sanity/client';
-import server from '~/env/server';
 
 interface Post {
   _createdAt: string;
@@ -9,14 +8,14 @@ interface Post {
   };
 }
 
-const config: ClientConfig = {
+export const config: ClientConfig = {
   projectId: 'xjcdjcm9',
   dataset: 'production',
-  apiVersion: '2023-06-15',
+  apiVersion: '2023-06-16',
   useCdn: true,
 };
 
-const client = createClient(config);
+export const client = createClient(config);
 
 export const getPosts = async (): Promise<Post[]> => {
   const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)`;
