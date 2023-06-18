@@ -4,13 +4,12 @@ import { A } from 'solid-start';
 const links = [
   { name: 'Privacy', href: '/privacy' },
   // { name: 'Advertise', href: '/advertise' },
-  { name: 'Newsletter', href: '/newsletter' },
 ];
 
 const Footer: Component<{}> = (props) => {
   return (
     <footer>
-      <nav class='mt-4 flex justify-center space-x-6'>
+      <nav class='flex justify-center space-x-6 py-4 font-bold'>
         <For each={links}>
           {(link) => (
             <A

@@ -2,8 +2,8 @@ import { Component } from 'solid-js';
 
 const privacy: Component<{}> = (props) => {
   return (
-    <main class='min-h-screen  justify-center bg-zinc-950 bg-grain  '>
-      <div class='container mx-auto flex flex-col items-center justify-center py-12'>
+    <main class='min-h-screen  justify-center   '>
+      <section class='container mx-auto flex flex-col items-center justify-center py-12'>
         <h1 class='bg-zinc-50 bg-grain-dark bg-clip-text pt-14 text-center text-4xl font-extrabold tracking-tighter text-transparent '>
           Privacy Policy
         </h1>
@@ -86,7 +86,7 @@ const privacy: Component<{}> = (props) => {
           contact@thisweekinaudio.com. <br /> <br />
           Last updated: {new Date().toLocaleDateString()}
         </p>
-      </div>
+      </section>
     </main>
   );
 };

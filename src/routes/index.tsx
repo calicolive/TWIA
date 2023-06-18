@@ -1,4 +1,3 @@
-
 import { A, createRouteData, useRouteData } from 'solid-start';
 import { createServerData$ } from 'solid-start/server';
 import EmailSignup from '~/components/EmailSignup';
@@ -16,15 +15,15 @@ export const routeData = () => {
     const slug = await getLatestPostSlug();
 
     return {
-      subscriberCount: data.counts.subscribed as number, 
-      slug: slug
+      subscriberCount: data.counts.subscribed as number,
+      slug: slug,
     };
   });
 };
 export default function Home() {
   const data = useRouteData<typeof routeData>();
   return (
-    <main class='flex min-h-screen items-center justify-center bg-zinc-950 bg-grain'>
+    <main class='flex min-h-screen items-center justify-center '>
       <div class='flex flex-col '>
         <div class='relative flex-1 overflow-hidden rounded-xl p-[3px] backdrop-blur-xl'>
           <span class='absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#030712_0%,#6366f1_50%,#030712_100%)] ' />
@@ -43,14 +42,15 @@ export default function Home() {
               <EmailSignup />
               <p class='mt-6 text-center text-sm text-zinc-300'>
                 Join {data()?.subscriberCount} readers for {''}
-                <A  href={`/newsletter/${data()?.slug}`} class=' text-indigo-500 underline-offset-2 hover:underline'>
+                <A
+                  href={`/newsletter/${data()?.slug}`}
+                  class=' group text-indigo-500 '>
                   one weekly email
                 </A>
               </p>
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </main>
   );
