@@ -20,16 +20,12 @@ const Issue: Component<{}> = (props) => {
 
   return (
     <>
-      <Head>
-        <Title>{post().title}</Title>
-      </Head>
+      <Head>{/* <Title>{post().title}</Title> */}</Head>
       <main class='  min-h-screen justify-center  '>
-        <Show when={post()}>
+        <Show when={post()} fallback={<p>loading...</p>}>
           <section class='md:prose-md container prose prose-sm prose-zinc mx-auto mt-12 p-4 text-zinc-50 lg:prose-lg  prose-h2:text-zinc-300 prose-a:text-indigo-500 prose-a:no-underline hover:prose-a:text-indigo-400'>
-            <h1 class=' font-bold text-zinc-50 '>
-              {post().title ? post().title : null}
-            </h1>
-            <PortableText value={post().body ? post().body : null} />
+            <h1 class=' font-bold text-zinc-50 '>{post().title}</h1>
+            <PortableText value={post().body} />
           </section>
         </Show>
       </main>
