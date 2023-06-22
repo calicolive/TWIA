@@ -23,7 +23,7 @@ export const routeData = () => {
 export default function Home() {
   const data = useRouteData<typeof routeData>();
   return (
-    <main class='flex min-h-screen items-center justify-center '>
+    <main class='flex h-screen items-center justify-center '>
       <div class='flex flex-col '>
         <div class='relative flex-1 overflow-hidden rounded-xl p-[3px] backdrop-blur-xl'>
           <span class='absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#030712_0%,#6366f1_50%,#030712_100%)] ' />

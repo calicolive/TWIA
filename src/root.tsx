@@ -11,6 +11,7 @@ import {
   Routes,
   Scripts,
   Title,
+  Link,
 } from 'solid-start';
 import './root.css';
 import Footer from './components/Footer';
@@ -29,8 +30,18 @@ export default function Root() {
         <Title>This Week in Audio</Title>
         <Meta charset='utf-8' />
         <Meta name='viewport' content='width=device-width, initial-scale=1' />
+        <Link rel='preconnect' href='https://fonts.googleapis.com' />
+        <Link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossorigin=''
+        />
+        <Link
+          href='https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap'
+          rel='stylesheet'
+        />
       </Head>
-      <Body class=' bg-zinc-950 bg-grain'>
+      <Body class=' min-h-screen bg-zinc-950 bg-grain'>
         <Suspense>
           <ErrorBoundary
             fallback={(e: Error) => (
