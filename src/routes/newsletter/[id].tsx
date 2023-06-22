@@ -7,6 +7,7 @@ import {
   useParams,
   useRouteData,
 } from 'solid-start';
+import Spinner from '~/components/Spinner';
 import { getPost } from '~/lib/sanity';
 
 export function routeData() {
@@ -20,15 +21,17 @@ const Issue: Component<{}> = (props) => {
 
   return (
     <>
-      <Head>{/* <Title>{post().title}</Title> */}</Head>
-      <main class='  min-h-screen justify-center  '>
-        <Show when={post()} fallback={<p>loading...</p>}>
+      <Show when={post()} fallback={<Spinner />}>
+        <Head>
+          <Title>{post().title}</Title>
+        </Head>
+        <main class='  min-h-screen justify-center  '>
           <section class='md:prose-md container prose prose-sm prose-zinc mx-auto mt-12 p-4 text-zinc-50 lg:prose-lg  prose-h2:text-zinc-300 prose-a:text-indigo-500 prose-a:no-underline hover:prose-a:text-indigo-400'>
             <h1 class=' font-bold text-zinc-50 '>{post().title}</h1>
             <PortableText value={post().body} />
           </section>
-        </Show>
-      </main>
+        </main>
+      </Show>
     </>
   );
 };
